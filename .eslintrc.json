@@ -15,7 +15,8 @@
       "import/export": "off",
       "@typescript-eslint/semi": "off",
       "@typescript-eslint/prefer-nullish-coalescing": "off",
-      "@typescript-eslint/space-before-function-paren": "off"
+      "@typescript-eslint/space-before-function-paren": "off",
+      "@typescript-eslint/consistent-type-imports": "off"
     }
   }
   

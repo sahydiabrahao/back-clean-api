@@ -1,16 +1,10 @@
-import { MissingParamError } from '../../errors';
-import { Validation } from './validation';
+import { MissingParamError } from '../../errors'
+import { RequiredFieldValidation } from './required-field-validation'
 
-export class RequiredFieldValidation implements Validation {
-  private readonly fieldName: string
-
-  constructor (fieldName: string) {
-    this.fieldName = fieldName
-  }
-
-  validate(input: any): Error {
-    if (!input[this.fieldName]) {
-      return new MissingParamError(this.fieldName)
-    }
-  }
-}
+describe('RequiredField Validation', () => {
+  test('Deve retornar a MissingParamError se validation der erro', () => {
+    const sut = new RequiredFieldValidation('field')
+    const error = sut.validate({ name: 'any_name' })
+    expect(error).toEqual(new MissingParamError('field'))
+  })
+})

@@ -4,8 +4,8 @@ import { ValidationComposite } from './validation-composite'
 
 const makeValidation = (): Validation => {
   class ValidationStub implements Validation {
-    validate (input: any): MissingParamError {
-      return new MissingParamError('field')
+    validate (input: any): Error {
+      return null
     }
   }
   return new ValidationStub()
@@ -41,5 +41,11 @@ describe('Validation Composite', () => {
     jest.spyOn(validationStubs[1], 'validate').mockReturnValueOnce(new MissingParamError('field'))
     const error = sut.validate({ field: 'any_value' })
     expect(error).toEqual(new Error())
+  })
+
+  test('Não deve retornar erro se der sucesso', () => {
+    const { sut } = makeSut()
+    const error = sut.validate({ field: 'any_value' })
+    expect(error).toBeFalsy()
   })
 })
